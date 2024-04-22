@@ -1,0 +1,67 @@
+#El formato de registro es: Nombre de usuario y Contraseña.
+#Primero diccionario para almacenar dicha información, con el par usuario-contraseña (clave-valor).
+#Segundo una función para registrar usuarios , verificar usuario que el usuario no exista / verificar longitud de contraseña .
+#Tercero función para mostrar la información de usuarios registrados .
+#Cuarto función para el login de usuarios, comprobando que la contraseña coincida con el usuario.
+#Quinto un menu para ejercutar funciones pre-existentes
+
+
+# Diccionario para almacenar usuarios y contraseñas
+my_base_datos = {}
+
+# Función para registrar un usuario
+def registrar_usuario():
+    nombre_de_usuario = input("Ingrese nombre de usuario:")
+
+    # Verificar si el usuario ya existe en la base de datos
+    if nombre_de_usuario in my_base_datos:
+        print("El usuario ya existe en la base de datos.")
+    else:
+        contraseña = input("Ingrese contraseña: ")
+
+        # Verificar la longitud de la contraseña
+        if len(contraseña) < 6:
+            print("La contraseña debe tener al menos 6 caracteres.")
+        else:
+            my_base_datos[nombre_de_usuario] = contraseña
+            print("Usuario registrado con éxito.")
+
+# Función para mostrar la información de usuarios registrados
+def mostrar_usuarios():
+    print("Usuarios registrados:")
+    for usuario, contraseña in my_base_datos.items():
+        print(f"Usuario: {usuario}, Contraseña: {contraseña}")
+
+# Función para el login de usuarios
+def login():
+    nombre_de_usuario = input("Ingrese nombre de usuario: ")
+    contraseña = input("Ingrese contraseña: ")
+
+    if nombre_de_usuario in my_base_datos and my_base_datos[nombre_de_usuario] == contraseña:
+        print("Su inicio sesión fue exitosa.")
+    else:
+        print("Nombre del usuario o contraseña son incorrectos. intente nuevamente ")
+
+
+# Menú principal
+while True:
+
+    print("\n Bienvenido al menu principal ")
+    print("\n1. Registrar usuario")
+    print("2. Mostrar usuarios registrados")
+    print("3. Login")
+    print("4. Salir ")
+
+    opcion = input("\n Seleccione una opción: ")
+
+    if opcion == "1":
+        registrar_usuario()
+    elif opcion == "2":
+        mostrar_usuarios()
+    elif opcion == "3":
+        login()
+    elif opcion == "4":
+        print(" ¡Hasta la proxima !  ")
+        break
+    else:
+        print("Opción inválida. selecciona una opcion valida del menu gracias!!! ")
